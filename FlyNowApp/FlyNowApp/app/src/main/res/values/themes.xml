@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.FlyNowApp" parent="android:Theme.Material.Light.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@color/beginner_color</item>
+    </style>
+    <style name="Theme.FlyNowAppStart" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFE4EBF9</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground_1</item>
+        <item name="postSplashScreenTheme">@style/Theme.FlyNowApp</item>
+    </style>
+</resources>
