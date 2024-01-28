@@ -49,22 +49,15 @@ Clone the repository to your local machine:
 ### Node.js Server
 
 1. Navigate to the `backend` folder.
-2. Install the required Node.js packages:
-  
-  `npm install`
+2. Install the required Node.js packages: `npm install`
 
-3. Start the server:
-
-  `npm start`
+3. Start the server: `npm start`
 
 ### PostgreSQL Database
 
 1. Ensure PostgreSQL is installed on your machine.
-2. Navigate to the `creationOfDatabase` folder.
-3. Execute the Python script to initialize the database:
-
-  `cd creationOfDatabase`
-  `python3 creationOfDatabase.py`
+2. Navigate to the `creationOfDatabase` folder: `cd creationOfDatabase`
+3. Execute the Python script to initialize the database: `python3 creationOfDatabase.py`
 
 ## Usage
 
