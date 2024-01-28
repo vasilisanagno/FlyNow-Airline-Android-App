@@ -15,6 +15,7 @@ FlyNowApp is an Android application developed using Jetpack Compose in Android S
 - [Backend](#backend)
 - [ER Diagram](#er-diagram)
 - [Database Initialization](#database-initialization)
+- [Screenshots From The Screens Of The App](#screenshots-from-the-screens-of-the-app)
 
 ## Installation
 
@@ -75,3 +76,5 @@ The ER diagram provides an overview of the database schema, illustrating the rel
 
 ER Diagram:
 ![Screenshot](ER_Diagram.png)
+
+## Screenshots From The Screens Of The App
