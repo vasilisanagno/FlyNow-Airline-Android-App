@@ -15,8 +15,6 @@ FlyNowApp is an Android application developed using Jetpack Compose in Android S
 - [Backend](#backend)
 - [ER Diagram](#er-diagram)
 - [Database Initialization](#database-initialization)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
