@@ -153,6 +153,9 @@ fun CarScreen(navController: NavController,
     val airportError = remember {
         mutableStateOf(false)
     }
+    val rentingTimeError = remember {
+        mutableStateOf(false)
+    }
     val ctx = LocalContext.current
     //variable to start the query
     val searchCarsQuery = remember {
@@ -160,6 +163,7 @@ fun CarScreen(navController: NavController,
     }
 
     //api for checking if the booking exists and does not have any error
+    //about airport, booking id and pick-up/return time of the car
     LaunchedEffect(bookingExists.value) {
         if(bookingExists.value) {
             val url = "http://100.106.205.30:5000/flynow/car-booking-exists"
@@ -169,6 +173,17 @@ fun CarScreen(navController: NavController,
             val jsonObject = JSONObject()
             jsonObject.put("bookingId", bookingId.value)
             jsonObject.put("location", locationToRentCar.value)
+            jsonObject.put("pickUpDate", pickUpDateCar.value)
+            val pickUpHours = pickUpHour.value.toInt()
+            jsonObject.put("pickUpHours", pickUpHours)
+            val pickUpMinutes = pickUpMins.value.toInt()
+            jsonObject.put("pickUpMinutes", pickUpMinutes)
+
+            jsonObject.put("returnDate", returnDateCar.value)
+            val returnHours = returnHour.value.toInt()
+            jsonObject.put("returnHours", returnHours)
+            val returnMinutes = returnMins.value.toInt()
+            jsonObject.put("returnMinutes", returnMinutes)
             jsonArray.put(jsonObject)
 
             val request = JsonArrayRequest(Request.Method.POST, url, jsonArray, { response ->
@@ -176,6 +191,7 @@ fun CarScreen(navController: NavController,
                     if(response!=null) {
                         bookingError.value = !response.getJSONObject(0).getBoolean("success")
                         airportError.value = !response.getJSONObject(0).getBoolean("successAirport")
+                        rentingTimeError.value = !response.getJSONObject(0).getBoolean("successTime")
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -188,7 +204,7 @@ fun CarScreen(navController: NavController,
             queue.add(request)
             delay(500)
             //if is alright continue to searching cars query
-            if(!bookingError.value && !airportError.value) {
+            if(!bookingError.value && !airportError.value && !rentingTimeError.value) {
                 searchCarsQuery.value = true
             }
             else {
@@ -397,7 +413,9 @@ fun CarScreen(navController: NavController,
                                     resId = R.font.opensans
                                 )
                             )
-                        )) },
+                        )
+                    )
+                },
                 textStyle = TextStyle.Default.copy(
                     fontSize = 18.sp,
                     fontFamily = FontFamily(
@@ -415,7 +433,7 @@ fun CarScreen(navController: NavController,
                 Text(
                     text = "Incorrect airport in this booking reference. Please check your details and try again.",
                     fontSize = 16.sp,
-                    modifier = Modifier.padding(start = 10.dp, top = 15.dp, end = 10.dp),
+                    modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp),
                     fontFamily = FontFamily(
                         fonts = listOf(
                             Font(
@@ -427,7 +445,7 @@ fun CarScreen(navController: NavController,
                 )
             }
             //text field for the date and time for pick up and return
-            CarDatePickerDialog(pickUp = pickUpbool, pickUpDateCar = pickUpDateCar,  returnDateCar = returnDateCar, date = pickUpDateCar, buttonClicked = buttonClicked)
+            CarDatePickerDialog(pickUp = pickUpbool, pickUpDateCar = pickUpDateCar,  returnDateCar = returnDateCar, date = pickUpDateCar, buttonClicked = buttonClicked, rentingTimeError = rentingTimeError)
             Row {
                 Text("Pick Up Time:",
                     fontSize = 16.sp,
@@ -440,10 +458,10 @@ fun CarScreen(navController: NavController,
                         )
                     )
                 )
-                TimeDropdownMenu(time = pickUpHour, pickUpHourBool = pickUpHourBool, returnDateCar = returnDateCar, hourbool)
-                TimeDropdownMenu(time = pickUpMins, pickUpHourBool = pickUpHourBool, returnDateCar = returnDateCar, minbool)
+                TimeDropdownMenu(time = pickUpHour, pickUpHourBool = pickUpHourBool, returnDateCar = returnDateCar, hourbool, rentingTimeError = rentingTimeError)
+                TimeDropdownMenu(time = pickUpMins, pickUpHourBool = pickUpHourBool, returnDateCar = returnDateCar, minbool, rentingTimeError = rentingTimeError)
             }
-            CarDatePickerDialog(pickUp = returnbool, pickUpDateCar = pickUpDateCar, returnDateCar = returnDateCar, date = returnDateCar, buttonClicked = buttonClicked)
+            CarDatePickerDialog(pickUp = returnbool, pickUpDateCar = pickUpDateCar, returnDateCar = returnDateCar, date = returnDateCar, buttonClicked = buttonClicked, rentingTimeError = rentingTimeError)
             Row {
                 Text("Return Time:",
                     fontSize = 16.sp,
@@ -456,15 +474,15 @@ fun CarScreen(navController: NavController,
                         )
                     )
                 )
-                TimeDropdownMenu(time = returnHour, pickUpHourBool = returnHourBool, returnDateCar = returnDateCar, hourbool)
-                TimeDropdownMenu(time = returnMins, pickUpHourBool = returnHourBool, returnDateCar = returnDateCar, minbool)
+                TimeDropdownMenu(time = returnHour, pickUpHourBool = returnHourBool, returnDateCar = returnDateCar, hourbool, rentingTimeError = rentingTimeError)
+                TimeDropdownMenu(time = returnMins, pickUpHourBool = returnHourBool, returnDateCar = returnDateCar, minbool, rentingTimeError = rentingTimeError)
             }
             //error if the return is same or before the pick up if the dates are the same
             if(returnDateCar.value != "" && pickUpDateCar.value == returnDateCar.value && pickUpHour.value >= returnHour.value ) {
                 Text(
                     text = "Return time must be after pick up time if the pick up and return day is the same!",
                     fontSize = 16.sp,
-                    modifier = Modifier.padding(start = 12.dp, top = 30.dp, end = 10.dp),
+                    modifier = Modifier.padding(start = 12.dp, top = 15.dp, end = 10.dp),
                     fontFamily = FontFamily(
                         fonts = listOf(
                             Font(
@@ -478,6 +496,22 @@ fun CarScreen(navController: NavController,
             }
             else{
                 timeError.value = false
+            }
+            //error if the rental datetime is not within the departure and return(if there is) flight in an arrival destination
+            if(rentingTimeError.value) {
+                Text(
+                    text = "Τhe rental date and time must be within the limits of your flight!",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(start = 12.dp, top = 15.dp, end = 10.dp),
+                    fontFamily = FontFamily(
+                        fonts = listOf(
+                            Font(
+                                resId = R.font.opensans
+                            )
+                        )
+                    ),
+                    color = Color.Red
+                )
             }
             //text field for the booking reference
             OutlinedTextField(
@@ -601,7 +635,9 @@ fun CarDatePicker(
     pickUpDateCar: MutableState<String>,
     returnDateCar: MutableState<String>,
     onSelectedDate: (String) -> Unit,
-    onDismiss: () -> Unit) {
+    onDismiss: () -> Unit,
+    rentingTimeError: MutableState<Boolean>
+) {
 
     val datePickerState = rememberDatePickerState(initialDisplayMode = DisplayMode.Input,
         selectableDates = object : SelectableDates {
@@ -702,6 +738,7 @@ fun CarDatePicker(
         confirmButton = {
             Button(
                 onClick = {
+                    rentingTimeError.value = false
                     onSelectedDate(selectedDate)
                     onDismiss()
                 },
@@ -819,7 +856,8 @@ fun CarDatePickerDialog(
     pickUpDateCar: MutableState<String>,
     returnDateCar: MutableState<String>,
     date: MutableState<String>,
-    buttonClicked: MutableState<Boolean>
+    buttonClicked: MutableState<Boolean>,
+    rentingTimeError: MutableState<Boolean>
 ) {
     val showDatePicker = remember {
         mutableStateOf(false)
@@ -833,8 +871,10 @@ fun CarDatePickerDialog(
                 || (!pickUp.value && pickUpDateCar.value != "")
                 || (pickUp.value && pickUpDateCar.value != ""),
         value = date.value,
-        onValueChange = {pickUpDateCar.value = it
-            buttonClicked.value = false },
+        onValueChange = {
+            pickUpDateCar.value = it
+            buttonClicked.value = false
+        },
         modifier = Modifier
             .fillMaxWidth()
             .padding(
@@ -905,7 +945,8 @@ fun CarDatePickerDialog(
             pickUpDateCar = pickUpDateCar,
             returnDateCar = returnDateCar,
             onSelectedDate = {date.value = it},
-            onDismiss = { showDatePicker.value = false}
+            onDismiss = { showDatePicker.value = false},
+            rentingTimeError = rentingTimeError
         )
     }
 }
@@ -913,7 +954,13 @@ fun CarDatePickerDialog(
 //function that creates the dropdown menu for the time selection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimeDropdownMenu(time: MutableState<String>, pickUpHourBool: MutableState<Boolean>,  returnDateCar: MutableState<String>,hour:  MutableState<Boolean>) {
+fun TimeDropdownMenu(
+    time: MutableState<String>,
+    pickUpHourBool: MutableState<Boolean>,
+    returnDateCar: MutableState<String>,
+    hour:  MutableState<Boolean>,
+    rentingTimeError: MutableState<Boolean>
+) {
     val isExpanded = remember {
         mutableStateOf(false)
     }
@@ -935,7 +982,9 @@ fun TimeDropdownMenu(time: MutableState<String>, pickUpHourBool: MutableState<Bo
             OutlinedTextField(
                 enabled  = pickUpHourBool.value || (returnDateCar.value != "" && !pickUpHourBool.value),
                 value = hours.value,
-                onValueChange = {time.value = hours.value},
+                onValueChange = {
+                    time.value = hours.value
+                },
                 readOnly = true,
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded.value)
@@ -994,6 +1043,7 @@ fun TimeDropdownMenu(time: MutableState<String>, pickUpHourBool: MutableState<Bo
                             hours.value = if (i < 10) "0${i}" else "$i"
                             isExpanded.value = false
                             time.value = hours.value
+                            rentingTimeError.value = false
                         },
                         modifier = Modifier.background(color = Color.White)
                     )
@@ -1024,7 +1074,10 @@ fun TimeDropdownMenu(time: MutableState<String>, pickUpHourBool: MutableState<Bo
             OutlinedTextField(
                 enabled  = pickUpHourBool.value || (returnDateCar.value != "" && !pickUpHourBool.value),
                 value = minutes.value,
-                onValueChange = {time.value = minutes.value},
+                onValueChange = {
+                    time.value = minutes.value
+                    rentingTimeError.value = false
+                },
                 readOnly = true,
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded.value)
@@ -1084,6 +1137,7 @@ fun TimeDropdownMenu(time: MutableState<String>, pickUpHourBool: MutableState<Bo
                             minutes.value = if (i < 15) "0${i}" else "$i"
                             isExpanded.value = false
                             time.value = minutes.value
+                            rentingTimeError.value = false
                         },
                         modifier = Modifier.background(color = Color.White)
                     )

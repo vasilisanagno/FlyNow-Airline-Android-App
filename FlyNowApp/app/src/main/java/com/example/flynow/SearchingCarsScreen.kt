@@ -139,7 +139,7 @@ fun SearchingCarsScreen(navController: NavController,
     //api that insert the renting of car
     LaunchedEffect(insertNewBookingOfCar.value) {
         if(insertNewBookingOfCar.value) {
-            val url = "http://100.78.116.14:5000/flynow/renting-car"
+            val url = "http://100.106.205.30:5000/flynow/renting-car"
             // on below line we are creating a variable for
             // our request queue and initializing it.
             val queue: RequestQueue = Volley.newRequestQueue(ctx)
@@ -274,7 +274,7 @@ fun SearchingCarsScreen(navController: NavController,
                     onDismissRequest = { showDialog.value = false },
                     title = {
                         Text(
-                            text = if (showDialog.value) "Confirm Renting Of This      Car" else if(!insertNewBookingOfCar.value) "Renting Of Car Added To Your Reservation Successfully!" else "",
+                            text = if (showDialog.value) "Confirm The Rental Of This Car" else if(!insertNewBookingOfCar.value) "The Car Rental Added To Your Reservation Successfully!" else "",
                             fontSize = 20.sp,
                             fontFamily = FontFamily(
                                 fonts = listOf(
