@@ -22,9 +22,7 @@ FlyNowApp is an Android application developed using Jetpack Compose in Android S
 
 Clone the repository to your local machine:
 
-\`\`\`bash
-git clone https://github.com/your-username/FlyNowApp.git
-\`\`\`
+`git clone https://github.com/vasilisanagno/FlyNow-Airline-Android-App.git`
 
 ## Features
 
@@ -45,34 +43,28 @@ git clone https://github.com/your-username/FlyNowApp.git
 
 ### Android Studio
 
-1. Open the \`FlyNowApp\` folder in Android Studio.
+1. Open the `FlyNowApp` folder in Android Studio.
 2. Build and run the Android application on an emulator or a physical device.
 
 ### Node.js Server
 
-1. Navigate to the \`backend\` folder.
+1. Navigate to the `backend` folder.
 2. Install the required Node.js packages:
-
-   \`\`\`bash
-   npm install
-   \`\`\`
+  
+  `npm install`
 
 3. Start the server:
 
-   \`\`\`bash
-   npm start
-   \`\`\`
+  `npm start`
 
 ### PostgreSQL Database
 
 1. Ensure PostgreSQL is installed on your machine.
-2. Navigate to the \`creationOfDatabase\` folder.
+2. Navigate to the `creationOfDatabase` folder.
 3. Execute the Python script to initialize the database:
 
-   \`\`\`bash
-   cd creationOfDatabase
-   python3 creationOfDatabase.py
-   \`\`\`
+  `cd creationOfDatabase`
+  `python3 creationOfDatabase.py`
 
 ## Usage
 
@@ -81,7 +73,7 @@ git clone https://github.com/your-username/FlyNowApp.git
 
 ## Backend
 
-The backend for FlyNowApp is implemented using Node.js. The \`server.js\` file contains the code for handling server-side logic, communication with the PostgreSQL database, and serving requests from the Android application.
+The backend for FlyNowApp is implemented using Node.js. The `server.js` file contains the code for handling server-side logic, communication with the PostgreSQL database, and serving requests from the Android application.
 
 To run the backend, follow the instructions in the [Setup](#setup) section.
 
