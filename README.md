@@ -14,7 +14,6 @@ FlyNowApp is an Android application developed using Jetpack Compose in Android S
 - [Usage](#usage)
 - [Backend](#backend)
 - [ER Diagram](#er-diagram)
-- [Database Initialization](#database-initialization)
 - [Screenshots From The Screens Of The App](#screenshots-from-the-screens-of-the-app)
 
 ## Installation
@@ -78,3 +77,13 @@ ER Diagram:
 ![Screenshot](ER_Diagram.png)
 
 ## Screenshots From The Screens Of The App
+
+![Screenshot](readmeImages/image1.jpg) ![Screenshot](readmeImages/image2.jpg)
+
+![Screenshot](readmeImages/image3.jpg) ![Screenshot](readmeImages/image4.jpg)
+
+![Screenshot](readmeImages/image5.jpg) ![Screenshot](readmeImages/image6.jpg)
+
+![Screenshot](readmeImages/image7.jpg) ![Screenshot](readmeImages/image8.jpg)
+
+![Screenshot](readmeImages/image9.jpg) ![Screenshot](readmeImages/image10.jpg)
