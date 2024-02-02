@@ -78,9 +78,15 @@ ER Diagram:
 
 ## Screenshots From The Screens Of The App
 
-![Screenshot](readmeImages/image1.jpg) ![Screenshot](readmeImages/image2.jpg)
+<p float="left">
+  <img src="readmeImages/image1.jpg" width="100" height="300" />
+  <img src="readmeImages/image2.jpg" width="100" height="300" />
+</p>
 
-![Screenshot](readmeImages/image3.jpg) ![Screenshot](readmeImages/image4.jpg)
+<p float="left">
+  <img src="readmeImages/image3.jpg" width="100" height="300" />
+  <img src="readmeImages/image4.jpg" width="100" height="300" />
+</p>
 
 ![Screenshot](readmeImages/image5.jpg) ![Screenshot](readmeImages/image6.jpg)
 
