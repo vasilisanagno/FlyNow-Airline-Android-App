@@ -81,12 +81,10 @@ ER Diagram:
 <p float="left">
   <img src="readmeImages/image1.jpg" width="200" height="400" />
   <img src="readmeImages/image2.jpg" width="200" height="400" />
-</p>
-
-<p float="left">
   <img src="readmeImages/image3.jpg" width="200" height="400" />
   <img src="readmeImages/image4.jpg" width="200" height="400" />
 </p>
+
 
 ![Screenshot](readmeImages/image5.jpg) ![Screenshot](readmeImages/image6.jpg)
 
