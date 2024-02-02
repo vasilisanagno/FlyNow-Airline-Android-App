@@ -78,16 +78,44 @@ ER Diagram:
 
 ## Screenshots From The Screens Of The App
 
-<p float="left">
+<div float="left">
   <img src="readmeImages/image1.jpg" width="180" height="400" />
   <img src="readmeImages/image2.jpg" width="180" height="400" />
   <img src="readmeImages/image3.jpg" width="180" height="400" />
   <img src="readmeImages/image4.jpg" width="180" height="400" />
-</p>
+</div>
 
+<div float="left">
+  <img src="readmeImages/image5.jpg" width="180" height="400" />
+  <img src="readmeImages/image6.jpg" width="180" height="400" />
+  <img src="readmeImages/image7.jpg" width="180" height="400" />
+  <img src="readmeImages/image8.jpg" width="180" height="400" />
+</div>
 
-![Screenshot](readmeImages/image5.jpg) ![Screenshot](readmeImages/image6.jpg)
+<div float="left">
+  <img src="readmeImages/image9.jpg" width="180" height="400" />
+  <img src="readmeImages/image10.jpg" width="180" height="400" />
+  <img src="readmeImages/image11.jpg" width="180" height="400" />
+  <img src="readmeImages/image12.jpg" width="180" height="400" />
+</div>
 
-![Screenshot](readmeImages/image7.jpg) ![Screenshot](readmeImages/image8.jpg)
+<div float="left">
+  <img src="readmeImages/image13.jpg" width="180" height="400" />
+  <img src="readmeImages/image14.jpg" width="180" height="400" />
+  <img src="readmeImages/image15.jpg" width="180" height="400" />
+  <img src="readmeImages/image16.jpg" width="180" height="400" />
+</div>
 
-![Screenshot](readmeImages/image9.jpg) ![Screenshot](readmeImages/image10.jpg)
+<div float="left">
+  <img src="readmeImages/image17.jpg" width="180" height="400" />
+  <img src="readmeImages/image18.jpg" width="180" height="400" />
+  <img src="readmeImages/image19.jpg" width="180" height="400" />
+  <img src="readmeImages/image20.jpg" width="180" height="400" />
+</div>
+
+<div float="left">
+  <img src="readmeImages/image21.jpg" width="180" height="400" />
+  <img src="readmeImages/image22.jpg" width="180" height="400" />
+  <img src="readmeImages/image23.jpg" width="180" height="400" />
+  <img src="readmeImages/image24.jpg" width="180" height="400" />
+</div>
