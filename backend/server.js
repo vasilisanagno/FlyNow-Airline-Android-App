@@ -2065,12 +2065,12 @@ app.post('/flynow/checkin-details', async (req, res) => {
 					JOIN has h ON h.flightid = f.flightid
 				WHERE 
 					h.reservationid = '${jsonArray[0].bookingid.toUpperCase()}'
-					AND f.flightdate = CURRENT_DATE + INTERVAL '1 day'
+					AND ((f.flightdate = CURRENT_DATE + INTERVAL '1 day'
 					AND f.departuretime <= (CAST((SELECT formatted_current_time FROM CurrentTimeFormatted) AS TIME WITH TIME ZONE) + INTERVAL '24 hours' - INTERVAL '1 second')
-					AND h.checkin = 'false'
+					AND h.checkin = 'false')
 					OR (f.flightdate = CURRENT_DATE 
 						AND f.departuretime >= (CAST((SELECT formatted_current_time FROM CurrentTimeFormatted) AS TIME WITH TIME ZONE)+INTERVAL '30 minutes')
-						AND h.checkin = 'false')
+						AND h.checkin = 'false'))
 				GROUP BY f.flightid, f.flightdate, f.arrivaltime
 				ORDER BY f.departuretime`)
 
