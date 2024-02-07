@@ -55,7 +55,7 @@ Clone the repository to your local machine:
 
 1. Ensure PostgreSQL is installed on your machine.
 2. Navigate to the `creationOfDatabase` folder: `cd creationOfDatabase`
-3. Execute the Python script to initialize the database: `python3 creationOfDatabase.py`
+3. Execute the Python script to initialize the database: `python creationOfDatabase.py`
 
 ## Usage
 
