@@ -1,4 +1,5 @@
 package com.example.flynow.ui.screens.checkIn
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavController
@@ -21,7 +22,8 @@ fun CheckInScreen(
     LaunchedEffect(sharedViewModel.checkIn) {
         if (sharedViewModel.checkIn) {
             checkInViewModel.getCheckInDetails()
-            delay(2000)
+            sharedViewModel.showProgressBar = true
+            delay(3000)
             if(sharedViewModel.checkInOpen) {
                 sharedViewModel.showProgressBar = true
                 delay(3000)
@@ -29,6 +31,10 @@ fun CheckInScreen(
                     popUpTo(CheckIn.route)
                     launchSingleTop = true
                 }
+            }
+            else {
+                sharedViewModel.showProgressBar = false
+                sharedViewModel.checkIn = false
             }
         }
     }

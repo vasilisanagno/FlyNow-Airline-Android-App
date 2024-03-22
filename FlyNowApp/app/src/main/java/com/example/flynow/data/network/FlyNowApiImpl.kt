@@ -77,7 +77,7 @@ class FlyNowApiImpl @Inject constructor(
     override suspend fun insertBooking(data: JSONArray): JSONArray {
         val url = Constants.BASE_URL+"flynow/new-booking"
 
-        return postRequest(url,data,5000)
+        return postRequest(url,data,4000)
     }
 
     override suspend fun checkBooking(data: JSONArray): JSONArray {

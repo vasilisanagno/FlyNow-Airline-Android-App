@@ -81,6 +81,7 @@ fun FlyNowCredentials(
                         sharedViewModel.checkIn = true
                     }
                 }
+                checkBooking.value = false
             }
             else {
                 sharedViewModel.hasError = true
