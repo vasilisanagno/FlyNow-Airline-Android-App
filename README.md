@@ -7,6 +7,7 @@ FlyNowApp is an Android application developed using Jetpack Compose in Android S
 - [Installation](#installation)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Folder Structure](#folder-structure)
 - [Setup](#setup)
   - [Android Studio](#android-studio)
   - [Node.js Server](#nodejs-server)
@@ -37,6 +38,38 @@ Clone the repository to your local machine:
 - PostgreSQL for the database
 - Volley Library for Android backend communication
 
+## Folder Structure
+
+The project has the following backend folder structure:
+
+- `backend`: Contains server-related files.
+  - `server.js`: Main server file.
+  - `config`: Folder that configurates the connection of the database with the server.
+  - `api`: Folder that contains files for the routes and communication with the database.
+    - `controllers`: Functions that are called according to the routes.
+    - `utils`: Functions that are useful some of them for the sockets and the game board.
+    - `routes`: Defines API routes that exists in the server.
+    - `services`: Functions that communicates with the database and makes queries.
+- `creationOfDatabase`: Contains files related to the initialization of the database with random data.
+
+The project has the following frontend folder structure:
+
+- `FlyNowApp`: Contains frontend-related files.
+  - `src/main`: Contains the source code.
+    - `java/com/example/flynow`: All files with code.
+      - `data`: Files related to communication with the server.
+        - `model`: Data classes that are useful in the responses of the server.
+        - `network`: Communication(APIs) with the server.
+        - `repository`: Classes that process the responses from the server apis.
+      - `di`: Folder for dependency injection.
+      - `model`: Data classes that are useful in entire app.
+      - `navigation`: Files related to the navigation throughout the app.
+      - `ui`: Files related to the screens of the app.
+        - `components`: Components that used on multiple screens.
+        - `screens`: Files related to the screens of the app and each screen, if needed, 
+        has a view model class and its own components.
+      - `utils`: Functions and constants that are useful in the functionalities of the app.
+
 ## Setup
 
 ### Android Studio
@@ -64,7 +97,7 @@ Clone the repository to your local machine:
 
 ## Backend
 
-The backend for FlyNowApp is implemented using Node.js. The `server.js` file contains the code for handling server-side logic, communication with the PostgreSQL database, and serving requests from the Android application.
+The backend for FlyNowApp is implemented using Node.js. The `backend` folder contains the code for handling server-side logic, communication with the PostgreSQL database, and serving requests from the Android application.
 
 To run the backend, follow the instructions in the [Setup](#setup) section.
 
