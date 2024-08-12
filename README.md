@@ -43,9 +43,9 @@ Clone the repository to your local machine:
 The project has the following backend folder structure:
 
 - `backend`: Contains server-related files.
-  - `server.js`: Main server file.
-  - `config`: Folder that configurates the connection of the database with the server.
-  - `api`: Folder that contains files for the routes and communication with the database.
+  - `src/server.js`: Main server file.
+  - `src/config`: Folder that configurates the connection of the database with the server.
+  - `src/api`: Folder that contains files for the routes and communication with the database.
     - `controllers`: Functions that are called according to the routes.
     - `utils`: Functions that are useful some of them for the sockets and the game board.
     - `routes`: Defines API routes that exists in the server.
