@@ -40,7 +40,9 @@ Clone the repository to your local machine:
 
 ## Folder Structure
 
-The project has the following backend folder structure:
+The project is organized as follows:
+
+### Backend
 
 - `backend`: Contains server-related files.
   - `src/server.js`: Main server file.
@@ -52,7 +54,7 @@ The project has the following backend folder structure:
     - `services`: Functions that communicates with the database and makes queries.
 - `creationOfDatabase`: Contains files related to the initialization of the database with random data.
 
-The project has the following frontend folder structure:
+### Frontend
 
 - `FlyNowApp`: Contains frontend-related files.
   - `src/main`: Contains the source code.
